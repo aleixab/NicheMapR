@@ -1130,7 +1130,8 @@ micro_global <- function(
       Nodes[1,1:ndays] <- 3 # deepest node for first substrate type
       Nodes[2,1:ndays] <- 9 # deepest node for second substrate type
     }
-    REFLS <- rep(REFL,ndays) # soil reflectances
+    # REFLS <- rep(REFL,ndays) # soil reflectances
+    REFLS <- REFL # soil reflectances
     PCTWET <- rep(PCTWET,ndays) # soil wetness
     if(runmoist == 0){
       moists2 <- matrix(nrow= 10, ncol = ndays, data=0) # set up an empty vector for soil moisture values through time
