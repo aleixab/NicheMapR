@@ -319,102 +319,103 @@
 #'}
 #' @export
 micro_global <- function(
-  loc = c(-89.4557, 43.1379),
-  timeinterval = 12,
-  nyears = 1,
-  soiltype = 4,
-  REFL = 0.15,
-  elev = NA,
-  slope = 0,
-  aspect = 0,
-  lapse_max = 0.0077,
-  lapse_min = 0.0039,
-  DEP = c(0, 2.5, 5, 10, 15, 20, 30, 50, 100, 200),
-  minshade = 0,
-  maxshade = 90,
-  dem = NA,
-  Refhyt = 1.2,
-  Usrhyt = 0.01,
-  Z01 = 0,
-  Z02 = 0,
-  ZH1 = 0,
-  ZH2 = 0,
-  runshade = 1,
-  solonly = 0,
-  clearsky = 0,
-  run.gads = 1,
-  Soil_Init = NA,
-  write_input = 0,
-  writecsv = 0,
-  elevatr = 0,
-  terrain = 0,
-  microclima = 0,
-  ERR = 1.5,
-  RUF = 0.004,
-  ZH = 0,
-  D0 = 0,
-  EC = 0.0167238,
-  SLE = 0.95,
-  Thcond = 2.5,
-  Density = 2.56,
-  SpecHeat = 870,
-  BulkDensity = 1.3,
-  PCTWET = 0,
-  cap = 1,
-  CMH2O = 1,
-  hori = rep(0,24),
-  TIMAXS = c(1, 1, 0, 0),
-  TIMINS = c(0, 0, 1, 1),
-  timezone = 0,
-  runmoist = 0,
-  PE = rep(1.1, 19),
-  KS = rep(0.0037, 19),
-  BB = rep(4.5, 19),
-  BD = rep(BulkDensity, 19),
-  DD = rep(Density, 19),
-  maxpool = 10000,
-  rainmult = 1,
-  evenrain = 0,
-  SoilMoist_Init = c(0.1, 0.12, 0.15, 0.2, 0.25, 0.3, 0.3, 0.3, 0.3, 0.3),
-  L = c(0, 0, 8.2, 8.0, 7.8, 7.4, 7.1, 6.4, 5.8, 4.8, 4.0, 1.8, 0.9, 0.6, 0.8, 0.4 ,0.4, 0, 0) * 10000,
-  R1 = 0.001,
-  RW = 2.5e+10,
-  RL = 2e+6,
-  PC = -1500,
-  SP = 10,
-  IM = 1e-06,
-  MAXCOUNT = 500,
-  LAI = 0.1,
-  microclima.LAI = 0,
-  microclima.LOR = 1,
-  snowmodel = 0,
-  snowtemp = 1.5,
-  snowdens = 0.375,
-  densfun = c(0.5979, 0.2178, 0.001, 0.0038),
-  snowmelt = 1,
-  undercatch = 1,
-  rainmelt = 0.0125,
-  rainfrac = 0.5,
-  shore = 0,
-  tides = 0,
-  lamb = 0,
-  IUV = 0,
-  soilgrids = 0,
-  IR = 0,
-  message = 0,
-  fail = nyears * 24 * 365,
-  TAI = 0,
-  warm = 0,
-  windfac = 1,
-  snowcond = 0,
-  intercept = max(maxshade) / 100 * 0.3,
-  grasshade = 0,
-  maxsurf = 95
+    loc = c(-89.4557, 43.1379),
+    timeinterval = 12,
+    nyears = 1,
+    soiltype = 4,
+    REFL = 0.15,
+    REFLS_INPUT = rep(0.1,12),
+    elev = NA,
+    slope = 0,
+    aspect = 0,
+    lapse_max = 0.0077,
+    lapse_min = 0.0039,
+    DEP = c(0, 2.5, 5, 10, 15, 20, 30, 50, 100, 200),
+    minshade = 0,
+    maxshade = 90,
+    dem = NA,
+    Refhyt = 1.2,
+    Usrhyt = 0.01,
+    Z01 = 0,
+    Z02 = 0,
+    ZH1 = 0,
+    ZH2 = 0,
+    runshade = 1,
+    solonly = 0,
+    clearsky = 0,
+    run.gads = 1,
+    Soil_Init = NA,
+    write_input = 0,
+    writecsv = 0,
+    elevatr = 0,
+    terrain = 0,
+    microclima = 0,
+    ERR = 1.5,
+    RUF = 0.004,
+    ZH = 0,
+    D0 = 0,
+    EC = 0.0167238,
+    SLE = 0.95,
+    Thcond = 2.5,
+    Density = 2.56,
+    SpecHeat = 870,
+    BulkDensity = 1.3,
+    PCTWET = 0,
+    cap = 1,
+    CMH2O = 1,
+    hori = rep(0,24),
+    TIMAXS = c(1, 1, 0, 0),
+    TIMINS = c(0, 0, 1, 1),
+    timezone = 0,
+    runmoist = 0,
+    PE = rep(1.1, 19),
+    KS = rep(0.0037, 19),
+    BB = rep(4.5, 19),
+    BD = rep(BulkDensity, 19),
+    DD = rep(Density, 19),
+    maxpool = 10000,
+    rainmult = 1,
+    evenrain = 0,
+    SoilMoist_Init = c(0.1, 0.12, 0.15, 0.2, 0.25, 0.3, 0.3, 0.3, 0.3, 0.3),
+    L = c(0, 0, 8.2, 8.0, 7.8, 7.4, 7.1, 6.4, 5.8, 4.8, 4.0, 1.8, 0.9, 0.6, 0.8, 0.4 ,0.4, 0, 0) * 10000,
+    R1 = 0.001,
+    RW = 2.5e+10,
+    RL = 2e+6,
+    PC = -1500,
+    SP = 10,
+    IM = 1e-06,
+    MAXCOUNT = 500,
+    LAI = 0.1,
+    microclima.LAI = 0,
+    microclima.LOR = 1,
+    snowmodel = 0,
+    snowtemp = 1.5,
+    snowdens = 0.375,
+    densfun = c(0.5979, 0.2178, 0.001, 0.0038),
+    snowmelt = 1,
+    undercatch = 1,
+    rainmelt = 0.0125,
+    rainfrac = 0.5,
+    shore = 0,
+    tides = 0,
+    lamb = 0,
+    IUV = 0,
+    soilgrids = 0,
+    IR = 0,
+    message = 0,
+    fail = nyears * 24 * 365,
+    TAI = 0,
+    warm = 0,
+    windfac = 1,
+    snowcond = 0,
+    intercept = max(maxshade) / 100 * 0.3,
+    grasshade = 0,
+    maxsurf = 95
 ) {
-
+  
   SoilMoist <- SoilMoist_Init
   errors <- 0
-
+  
   # error trapping - originally inside the Fortran code, but now checking before executing Fortran
   if(DEP[2]-DEP[1]>3 | DEP[3]-DEP[2]>3){
     message("warning, nodes might be too far apart near the surface, try a different spacing if the program is crashing \n")
@@ -514,11 +515,6 @@ micro_global <- function(
         Please input a positive value.", '\n')
     errors <- 1
   }
-  if(REFL<0 | REFL>1){
-    message("ERROR: Soil reflectivity value (REFL) is out of bounds.
-        Please input a value between 0 and 1.", '\n')
-    errors <- 1
-  }
   if(slope<0 | slope>90){
     message("ERROR: Slope value (slope) is out of bounds.
         Please input a value between 0 and 90.", '\n')
@@ -593,11 +589,11 @@ micro_global <- function(
     errors <- 1
   }
   # end error trapping
-
+  
   if(errors == 0){ # continue
-
+    
     ################## time related variables #################################
-
+    
     doys12 <- c(15, 46, 74, 105, 135, 166, 196, 227, 258, 288, 319, 349) # middle day of each month
     doysn <- doys12 # variable of doys for when doing multiple years
     if(nyears>1 & timeinterval == 365){ # create sequence of days for splining across multiple years
@@ -605,13 +601,13 @@ micro_global <- function(
         doysn <- c(doysn,(doys12+365*i))
       }
     }
-
+    
     if(timeinterval<365){
       microdaily <- 0 # run microclimate model as normal, where each day is iterated 3 times starting with the initial condition of uniform soil temp at mean monthly temperature
     }else{
       microdaily <- 1 # run microclimate model where one iteration of each day occurs and last day gives initial conditions for present day with an initial 3 day burn in
     }
-
+    
     # now check if doing something other than middle day of each month, and create appropriate vector of Day of Year
     daystart <- as.integer(ceiling(365/timeinterval/2))
     if(timeinterval!=12){
@@ -624,15 +620,15 @@ micro_global <- function(
     doy <- rep(doy,nyears)
     idayst  <-  1 # start day
     ida <- timeinterval*nyears # end day
-
+    
     ################## location and terrain #################################
-
+    
     if(is.numeric(loc) == FALSE){ # might not be quite right format, try correcting
       loc=cbind(as.numeric(loc[1]),as.numeric(loc[2]))
     }
     longlat <- loc
     x <- t(as.matrix(as.numeric(c(loc[1],loc[2]))))
-
+    
     # get the local timezone reference longitude
     if(timezone == 1){ # this now requires registration
       if(!require(geonames, quietly = TRUE)){
@@ -649,7 +645,7 @@ micro_global <- function(
     ALONG <- abs(trunc(x[1]))
     ALMINT <- (abs(x[1])-ALONG)*60
     azmuth <- aspect
-
+    
     if(terrain == 1){
       elevatr <- 1
     }
@@ -678,7 +674,7 @@ micro_global <- function(
         hori <- ha24
       }
     }
-
+    
     hori <- as.matrix(hori) #horizon angles
     VIEWF <- 1-sum(sin(as.data.frame(hori) * pi / 180)) / length(hori) # convert horizon angles to radians and calc view factor(s)
     SLES <- rep(SLE,timeinterval*nyears)
@@ -711,7 +707,7 @@ micro_global <- function(
         DD <- rep(Density,19) # soil density, Mg/m3
       }
     }
-
+    
     if(soilgrids == 1){
       cat('extracting data from SoilGrids \n')
       if (!requireNamespace("jsonlite", quietly = TRUE)) {
@@ -759,12 +755,12 @@ micro_global <- function(
       stop("package 'ncdf4' is needed. Please install it.",
            call. = FALSE)
     }
-
+    
     message('extracting climate data \n')
     global_climate <- terra::rast(paste0(folder, "/global_climate.nc"))
     CLIMATE <- t(as.numeric(terra::extract(global_climate, x)))
     ALTT <- as.numeric(CLIMATE[1])
-
+    
     delta_elev <- 0
     if(is.na(elev) == FALSE){ # check if user-specified elevation
       delta_elev <- ALTT - elev # get delta for lapse rate correction
@@ -826,7 +822,7 @@ micro_global <- function(
       message("Sorry, there is no environmental data for this location")
       SoilMoist <- t(as.numeric(terra::extract(soilmoisture, cbind(140, -35)))) / 1000 # this is originally in mm/m
     }
-
+    
     # correct for fact that wind is measured at 10 m height
     # wind shear equation v / vo = (h / ho)^a
     #where
@@ -899,9 +895,9 @@ micro_global <- function(
     }
     tannul <- mean(unlist(ALLTEMPS))
     tannulrun <- rep(tannul,doynum)
-
+    
     daymon <- c(31,28,31,30,31,30,31,31,30,31,30,31) # days in each month
-
+    
     # if doing daily sims, spread rainfall evenly across days based on mean monthly rainfall and the number of rainy days per month
     if(timeinterval == 365){
       RAINFALL1 <- 1:365
@@ -947,13 +943,13 @@ micro_global <- function(
         RAINFALL <- RAINFALL/rep(daymon,nyears)
       }
     }#end check doing daily sims
-
+    
     ndays <- length(RAINFALL)
     SOLRhr <- rep(0,24*ndays)
-
+    
     hourly <- 0
     if(microclima > 0 & timeinterval %in% c(12, 365)){
-
+      
       cat('using microclima and elevatr to adjust solar for topographic and vegetation effects \n')
       if (!require("microclima", quietly = TRUE)) {
         stop("package 'microclima' is needed. Please install it.",
@@ -1028,7 +1024,7 @@ micro_global <- function(
       cloudhr <- cloudhr[order(cloudhr[,1]),]
       cloudhr <- cloudhr[,2]
       #cloudhr <- leapfix(cloudhr, yearlist, 24)
-      micro_clearsky <- micro_global(loc = c(x[1], x[2]), clearsky = 1, TAI = TAI, timeinterval = 365, solonly = 1)
+      micro_clearsky <- micro_global(loc = c(x[1], x[2]), clearsky = 1, TAI = TAI, timeinterval = 365, REFLS_INPUT = rep(0.15, 365) ,solonly = 1)
       clearskyrad <- micro_clearsky$metout[, c(1, 13)][, 2]
       dsw2 <- leapfix(clearskyrad, yearlist, 24) *(0.36+0.64*(1-cloudhr/100)) # Angstrom formula (formula 5.33 on P. 177 of "Climate Data and Resources" by Edward Linacre 1992
       # partition total solar into diffuse and direct using code from microclima::hourlyNCEP
@@ -1097,17 +1093,17 @@ micro_global <- function(
       dates_15th <- which(format(dates_all, "%d") == "15")
       diffuse_frac <- diffuse_frac_all[dates_15th]
     }
-
+    
     if(length(TAI) < 111){ # no user supplied values, compute with GADS
       if(run.gads > 0){
         ####### get solar attenuation due to aerosols with program GADS #####################
         relhum <- 1
         if(run.gads == 1){ # fortran version
-         optdep.summer <- as.data.frame(rungads(longlat[2], longlat[1], relhum, 0))
-         optdep.winter <- as.data.frame(rungads(longlat[2], longlat[1], relhum, 1))
+          optdep.summer <- as.data.frame(rungads(longlat[2], longlat[1], relhum, 0))
+          optdep.winter <- as.data.frame(rungads(longlat[2], longlat[1], relhum, 1))
         }else{ # r version
-         optdep.summer <- as.data.frame(gads.r(longlat[2], longlat[1], relhum, 0))
-         optdep.winter <- as.data.frame(gads.r(longlat[2], longlat[1], relhum, 1))
+          optdep.summer <- as.data.frame(gads.r(longlat[2], longlat[1], relhum, 0))
+          optdep.winter <- as.data.frame(gads.r(longlat[2], longlat[1], relhum, 1))
         }
         optdep <- cbind(optdep.winter[,1],rowMeans(cbind(optdep.summer[,2],optdep.winter[,2])))
         optdep <- as.data.frame(optdep)
@@ -1130,7 +1126,10 @@ micro_global <- function(
       Nodes[1,1:ndays] <- 3 # deepest node for first substrate type
       Nodes[2,1:ndays] <- 9 # deepest node for second substrate type
     }
-    REFLS <- rep(REFL,ndays) # soil reflectances
+    #REFLS <- rep(REFL,ndays) # soil reflectances
+    REFLS <- REFLS_INPUT # soil reflectances
+    #print(REFLS_INPUT)
+    print(REFLS)
     PCTWET <- rep(PCTWET,ndays) # soil wetness
     if(runmoist == 0){
       moists2 <- matrix(nrow= 10, ncol = ndays, data=0) # set up an empty vector for soil moisture values through time
@@ -1143,7 +1142,7 @@ micro_global <- function(
       moists2[moists2>(1-BulkDensity/Density)] <- (1-BulkDensity/Density)
       moists <- moists2
     }
-
+    
     # now make the soil properties matrix
     # columns are:
     #1) bulk density (Mg/m3)
@@ -1191,7 +1190,7 @@ micro_global <- function(
       soilprops[2,5] <- Density # insert mineral density to profile 2
     }
     #########################################################################################
-
+    
     # hourly option set to 0, so make empty vectors
     hourly <- 0
     rainhourly <- 0
@@ -1205,7 +1204,7 @@ micro_global <- function(
     IRDhr <- rep(-1,24*ndays)
     # microclimate input parameters list
     microinput <- c(ndays, RUF, ERR, Usrhyt, Refhyt, Numtyps, Z01, Z02, ZH1, ZH2, idayst, ida, HEMIS, ALAT, AMINUT, ALONG, ALMINT, ALREF, slope, azmuth, ALTT, CMH2O, microdaily, tannul, EC, VIEWF, snowtemp, snowdens, snowmelt, undercatch, rainmult, runshade, runmoist, maxpool, evenrain, snowmodel, rainmelt, writecsv, densfun, hourly, rainhourly, lamb, IUV, RW, PC, RL, SP, R1, IM, MAXCOUNT, IR, message, fail, snowcond, intercept, grasshade, solonly, ZH, D0, TIMAXS, TIMINS, spinup, 0, 360, maxsurf)
-
+    
     if(length(LAI)<ndays){
       LAI <- rep(LAI[1],ndays)
     }
@@ -1214,7 +1213,7 @@ micro_global <- function(
     }
     # all microclimate data input list - all these variables are expected by the input argument of the fortran micro2014 subroutine
     micro <- list(tides = tides, microinput = microinput, doy = doy, SLES = SLES, DEP = DEP, Nodes = Nodes, MAXSHADES = MAXSHADES, MINSHADES = MINSHADES, TMAXX = TMAXX, TMINN = TMINN, RHMAXX = RHMAXX, RHMINN = RHMINN, CCMAXX = CCMAXX, CCMINN = CCMINN, WNMAXX = WNMAXX, WNMINN = WNMINN, TAIRhr = TAIRhr, RHhr = RHhr, WNhr = WNhr, CLDhr = CLDhr, SOLRhr = SOLRhr, RAINhr = RAINhr, ZENhr = ZENhr, IRDhr = IRDhr, REFLS = REFLS, PCTWET = PCTWET, soilinit = soilinit, hori = hori, TAI = TAI, soilprops = soilprops, moists = moists, RAINFALL = RAINFALL, tannulrun = tannulrun, PE = PE, KS = KS, BB = BB, BD = BD, DD = DD, L = L, LAI = LAI)
-
+    
     # write all input to csv files in their own folder
     if(write_input == 1){
       if(dir.exists("micro csv input") == FALSE){
@@ -1263,7 +1262,7 @@ micro_global <- function(
       write.table(ZENhr,file="micro csv input/ZENhr.csv", sep = ",", col.names = NA, qmethod = "double")
       write.table(IRDhr,file="micro csv input/IRDhr.csv", sep = ",", col.names = NA, qmethod = "double")
     }
-
+    
     if(is.numeric(loc[1])){
       location<-paste("long",loc[1],"lat",loc[2])
     }else{
@@ -1274,7 +1273,7 @@ micro_global <- function(
     ptm <- proc.time() # Start timing
     microut<-microclimate(micro)
     message(paste0('runtime ', (proc.time() - ptm)[3], ' seconds')) # Stop the clock
-
+    
     metout <- microut$metout # retrieve above ground microclimatic conditions, min shade
     shadmet <- microut$shadmet # retrieve above ground microclimatic conditions, max shade
     soil <- microut$soil # retrieve soil temperatures, minimum shade
@@ -1344,3 +1343,4 @@ micro_global <- function(
     }
   } # end error trapping
 } # end of micro_global function
+
