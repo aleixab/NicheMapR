@@ -514,9 +514,9 @@ micro_global <- function(
         Please input a positive value.", '\n')
     errors <- 1
   }
-  if(REFL<0 | REFL>1){
-    message("ERROR: Soil reflectivity value (REFL) is out of bounds.
-        Please input a value between 0 and 1.", '\n')
+  if (any(REFL < 0 | REFL > 1)) {
+    message("ERROR: One or more soil reflectivity values (REFL) are out of bounds.
+        Please input values between 0 and 1.", '\n')
     errors <- 1
   }
   if(slope<0 | slope>90){
@@ -1130,9 +1130,8 @@ micro_global <- function(
       Nodes[1,1:ndays] <- 3 # deepest node for first substrate type
       Nodes[2,1:ndays] <- 9 # deepest node for second substrate type
     }
-
     # REFLS <- rep(REFL,ndays) # soil reflectances
-    REFLS <- REFLS_INPUT # soil reflectances
+    REFLS <- REFL # soil reflectances
 
     PCTWET <- rep(PCTWET,ndays) # soil wetness
     if(runmoist == 0){
