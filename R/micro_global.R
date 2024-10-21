@@ -514,11 +514,6 @@ micro_global <- function(
         Please input a positive value.", '\n')
     errors <- 1
   }
-  if (any(REFL < 0 | REFL > 1)) {
-    message("ERROR: One or more soil reflectivity values (REFL) are out of bounds.
-        Please input values between 0 and 1.", '\n')
-    errors <- 1
-  }
   if(slope<0 | slope>90){
     message("ERROR: Slope value (slope) is out of bounds.
         Please input a value between 0 and 90.", '\n')
