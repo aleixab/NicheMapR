@@ -334,6 +334,7 @@ micro_terra <- function(
   elevation = NA,
   nyears = yfinish - ystart + 1,
   REFL = 0.15,
+  REFLS_INPUT = rep(0.1,12),
   elev = NA,
   slope = 0,
   aspect = 0,
@@ -534,11 +535,6 @@ micro_terra <- function(
   if(min(BulkDensity) < 0){
     message("ERROR: Bulk density value (BulkDensity) is negative.
         Please input a positive value.", '\n')
-    errors <- 1
-  }
-  if(REFL < 0 | REFL > 1){
-    message("ERROR: Soil reflectivity value (REFL) is out of bounds.
-        Please input a value between 0 and 1.", '\n')
     errors <- 1
   }
   if(slope < 0 | slope > 90){
@@ -1484,7 +1480,10 @@ micro_terra <- function(
       Nodes[1,1:ndays]<-3 # deepest node for first substrate type
       Nodes[2,1:ndays]<-9 # deepest node for second substrate type
     }
-    REFLS<-rep(REFL,ndays) # soil reflectances
+    #REFLS <- rep(REFL,ndays) # soil reflectances
+    REFLS <- REFLS_INPUT # soil reflectances
+    print(REFLS_INPUT)
+    print(REFLS)
     PCTWET<-rep(PCTWET,ndays) # soil wetness
     if(runmoist==0){
       moists2<-matrix(nrow= 10, ncol = ndays, data=0) # set up an empty vector for soil moisture values through time
@@ -1720,3 +1719,4 @@ micro_terra <- function(
     }
   } # end error trapping
 } # end of micro_terra function
+
